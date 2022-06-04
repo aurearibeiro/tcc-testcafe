@@ -38,6 +38,6 @@ npm test ou yarn test
 
 Para rodar os testes e atualizar a documentação, abra o terminal do VsCode e digite o comando:
 ```
-npx tescafe chrome tests/basic.test.js --reporter html:report.html
+npx testcafe chrome tests/basic.test.js --reporter html:report.html
 ```
 
