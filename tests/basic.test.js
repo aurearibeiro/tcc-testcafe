@@ -3,6 +3,7 @@ import { LoginElements } from "../elements/login.elements";
 import { FormCovidElements } from "../elements/formCovid.elements";
 import { PortalElements } from "../elements/portal.elements";
 import { FormRatingElements } from "../elements/formRating.elements";
+import config from "../login.json";
 
 fixture`Testes usando testcafe`
   .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
