@@ -2,6 +2,7 @@ import { Selector } from "testcafe";
 import { LoginElements } from "../elements/login.elemenst";
 import { FormCovidElements } from "../elements/formCovid.elements";
 import { PortalElements } from "../elements/portal.elements";
+import { FormRatingElements } from "../elements/formRating";
 
 fixture`Testes usando testcafe`
   .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
@@ -33,6 +34,12 @@ fixture`Testes usando testcafe`
         .click(FormCovidElements.answer6)
         .click(FormCovidElements.buttonConfirm)
         .click(FormCovidElements.buttonContinue);
+    }
+
+    const info = Selector(FormRatingElements.formRating);
+
+    if (await info.exists) {
+      await t.click(FormRatingElements.button);
     }
   }
 );

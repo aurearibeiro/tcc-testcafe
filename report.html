@@ -73,9 +73,9 @@
       <div class="client-logo" style="padding:15px"></div>
       <div class="bg-primary" style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">
         <h3>Summary</h3><br>
-        <p class="lead">Start Time: Sat Jun 04 2022 09:55:44 GMT-0300 (Horário Padrão de Brasília)</p>
+        <p class="lead">Start Time: Wed Jun 22 2022 18:58:20 GMT-0300 (Horário Padrão de Brasília)</p>
         <p class="lead">Browsers: Chrome 101.0.4951.41 / Linux 0.0</p>
-        <p class="lead">Duration: 1m 24s</p>
+        <p class="lead">Duration: 1m 12s</p>
         <p class="lead">Tests Failed: 1 out of 9</p>
         <p class="lead">Tests Skipped: 0</p>
       </div><br>
@@ -104,7 +104,7 @@
   <td>Testes usando testcafe</td>
   <td>2- Atividades complementares: Verificar exibição da mensagem</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>7s</td>
+  <td>9s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -112,7 +112,7 @@
   <td>Testes usando testcafe</td>
   <td>3- Pedidos (notas): Verificar exibição da mensagem</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>9s</td>
+  <td>8s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -120,7 +120,7 @@
   <td>Testes usando testcafe</td>
   <td>4- Consulta de pedidos (notas): Verificar exibição da mensagem</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>8s</td>
+  <td>7s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -128,7 +128,7 @@
   <td>Testes usando testcafe</td>
   <td>5- Requerimentos: Verificar requerimentos existentes</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>16s</td>
+  <td>9s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -136,7 +136,7 @@
   <td>Testes usando testcafe</td>
   <td>6- Nota de estágio: Verificar exibição da tabela</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>8s</td>
+  <td>7s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -144,7 +144,7 @@
   <td>Testes usando testcafe</td>
   <td>7- Quadro de Pré/Co Requisitos: Verificar a exibição das informações</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>8s</td>
+  <td>7s</td>
   <td>passed</td>
  </tr>
  <tr class="success">
@@ -160,7 +160,7 @@
   <td>Testes usando testcafe</td>
   <td>9- Pedidos de prova presencial</td>
   <td>Chrome 101.0.4951.41 / Linux 0.0</td>
-  <td>9s</td>
+  <td>8s</td>
   <td><a href="#test-9">failed</a></td>
  </tr>
 
@@ -183,18 +183,18 @@
 
 Browser: Chrome 101.0.4951.41 / Linux 0.0
 
-   212 |    .innerText;
-   213 |
-   214 |  await t
-   215 |    .click(&quot;#ctl00_MenuLateral_UCMenuAcademico10_HyperLink5&quot;)
-   216 |    .expect(element.visible)
- &gt; 217 |    .ok();
-   218 |&#125);
-   219 |
+   207 |  const element = Selector(PortalElements.testRequests.course).innerText;
+   208 |
+   209 |  await t
+   210 |    .click(PortalElements.grades)
+   211 |    .expect(element.visible)
+ &gt; 212 |    .ok();
+   213 |&#125);
+   214 |
 
-   at &lt;anonymous&gt; (/home/aurea/Área de Trabalho/PROJETO/testes/testcafe/tests/basic.test.js:217:6)
-   at asyncGeneratorStep (/home/aurea/Área de Trabalho/PROJETO/testes/testcafe/tests/basic.test.js:1:247)
-   at _next (/home/aurea/Área de Trabalho/PROJETO/testes/testcafe/tests/basic.test.js:1:585) </pre><br>
+   at &lt;anonymous&gt; (/home/aurea/Área de Trabalho/Pasta/TCC/tcc-testcafe/tests/basic.test.js:212:6)
+   at asyncGeneratorStep (/home/aurea/Área de Trabalho/Pasta/TCC/tcc-testcafe/tests/basic.test.js:5:153)
+   at _next (/home/aurea/Área de Trabalho/Pasta/TCC/tcc-testcafe/tests/basic.test.js:5:491) </pre><br>
     </div>
     <script>
       const modal = document.getElementById('myModal');
