@@ -1,8 +1,8 @@
 import { Selector } from "testcafe";
-import { LoginElements } from "../elements/login.elemenst";
+import { LoginElements } from "../elements/login.elements";
 import { FormCovidElements } from "../elements/formCovid.elements";
 import { PortalElements } from "../elements/portal.elements";
-import { FormRatingElements } from "../elements/formRating";
+import { FormRatingElements } from "../elements/formRating.elements";
 
 fixture`Testes usando testcafe`
   .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
