@@ -3,6 +3,7 @@ import { LoginElements } from "../elements/login.elemenst";
 import { FormCovidElements } from "../elements/formCovid.elements";
 import { PortalElements } from "../elements/portal.elements";
 import { FormRatingElements } from "../elements/formRating";
+import config from "../login.json";
 
 fixture`Testes usando testcafe`
   .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
@@ -14,12 +15,12 @@ fixture`Testes usando testcafe`
       .eql("2")
 
       .click(course)
-      .click(courseOption.withText("Engenharia de Controle e Automação"))
+      .click(courseOption.withText(config.curso))
       .expect(course.value)
       .eql("24")
 
-      .typeText(LoginElements.inputRegistration, "99999")
-      .typeText(LoginElements.inputPassword, "119922")
+      .typeText(LoginElements.inputRegistration, config.matricula)
+      .typeText(LoginElements.inputPassword, config.senha)
       .click(LoginElements.buttonLogin);
 
     const form = Selector(FormCovidElements.form);
