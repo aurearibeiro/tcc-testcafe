@@ -1,4 +1,7 @@
 import { Selector } from "testcafe";
+import { LoginElements } from "../elements/login.elemenst";
+import { FormCovidElements } from "../elements/formCovid.elements";
+import { PortalElements } from "../elements/portal.elements";
 
 fixture`Testes usando testcafe`
   .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
@@ -14,36 +17,29 @@ fixture`Testes usando testcafe`
       .expect(course.value)
       .eql("24")
 
-      .typeText(
-        "#ctl00_Corpo_TabAcessoLogin_TabAluno_LogOn_tbMatricula",
-        "99999"
-      )
-      .typeText("#ctl00_Corpo_TabAcessoLogin_TabAluno_LogOn_Password", "119922")
-      .click("#ctl00_Corpo_TabAcessoLogin_TabAluno_LogOn_LoginButton");
+      .typeText(LoginElements.inputRegistration, "99999")
+      .typeText(LoginElements.inputPassword, "119922")
+      .click(LoginElements.buttonLogin);
 
-    const form = Selector("#ctl00_Corpo_UCModeloAvaliacaoPU1_lblAvaliacao");
+    const form = Selector(FormCovidElements.form);
 
     if (await form.exists) {
       await t
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl02_rdbOpcao_0")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl03_rdbOpcao_1")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl04_rdbOpcao_4")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl05_rdbOpcao_1")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl06_rdbOpcao_1")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_GridDados_ctl07_rdbOpcao_2")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_btnConfirmar1")
-        .click("#ctl00_Corpo_UCModeloAvaliacaoPU1_Button3");
+        .click(FormCovidElements.answer1)
+        .click(FormCovidElements.answer2)
+        .click(FormCovidElements.answer3)
+        .click(FormCovidElements.answer4)
+        .click(FormCovidElements.answer5)
+        .click(FormCovidElements.answer6)
+        .click(FormCovidElements.buttonConfirm)
+        .click(FormCovidElements.buttonContinue);
     }
   }
 );
 
-const authType = Selector(
-  "#ctl00_Corpo_TabAcessoLogin_TabAluno_LogOn_dropTipoAutenticacao"
-);
-const course = Selector(
-  "#ctl00_Corpo_TabAcessoLogin_TabAluno_LogOn_dropSubCurso"
-);
-const req = Selector("#ctl00_Corpo_dropProcesso");
+const authType = Selector(LoginElements.authType);
+const course = Selector(LoginElements.course);
+const req = Selector(PortalElements.requirements.requirementOption);
 
 const authTypeOption = authType.find("option");
 const courseOption = course.find("option");
@@ -51,7 +47,7 @@ const reqOption = req.find("option");
 
 test(`1- Histórico acadêmico: Verificar a exibição da tabela`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink5")
+    .click(PortalElements.historic)
     .expect(Selector("th").nth(0).innerText)
     .eql("Sigla")
     .expect(Selector("th").nth(1).innerText)
@@ -64,9 +60,9 @@ test(`1- Histórico acadêmico: Verificar a exibição da tabela`, async (t) => 
 
 test(`2- Atividades complementares: Verificar exibição da mensagem`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink3")
+    .click(PortalElements.complementaryActivity.access)
 
-    .expect(Selector("#ctl00_Corpo_UCNotas1_lblErro").innerText)
+    .expect(Selector(PortalElements.complementaryActivity.message).innerText)
     .eql(
       "Você não está matriculado em turmas que possuem atividades complementares !!!"
     );
@@ -74,26 +70,23 @@ test(`2- Atividades complementares: Verificar exibição da mensagem`, async (t)
 
 test(`3- Pedidos (notas): Verificar exibição da mensagem`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink6")
+    .click(PortalElements.noteRequest.access)
 
-    .expect(Selector("#ctl00_Corpo_lblErro").innerText)
+    .expect(Selector(PortalElements.noteRequest.message).innerText)
     .eql("Não existem pedidos de notas a serem solicitados !!!");
 });
 
 test(`4- Consulta de pedidos (notas): Verificar exibição da mensagem`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink13")
+    .click(PortalElements.orderInquiry.access)
 
-    .expect(
-      Selector("#ctl00_Corpo_UCConsultaPedidosNotas1_lblErroConsultaPedidos")
-        .innerText
-    )
+    .expect(Selector(PortalElements.orderInquiry.message).innerText)
     .eql("Não existem Pedidos referentes à Notas a serem consultados.");
 });
 
 test(`5- Requerimentos: Verificar requerimentos existentes`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink15")
+    .click(PortalElements.requirements.access)
     .click(req)
     .click(reqOption.withText("Requerimento de Desistência de Disciplinas"))
     .expect(req.value)
@@ -107,7 +100,7 @@ test(`5- Requerimentos: Verificar requerimentos existentes`, async (t) => {
 
 test(`6- Nota de estágio: Verificar exibição da tabela`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink14")
+    .click(PortalElements.intershipGrade.access)
 
     .expect(Selector("th").nth(0).innerText)
     .eql("Sigla")
@@ -119,42 +112,38 @@ test(`6- Nota de estágio: Verificar exibição da tabela`, async (t) => {
     .eql("Ano/Semestre")
 
     .expect(
-      Selector("#ctl00_Corpo_UCNotaEstagio1_notaEstagioGridView td").nth(0)
-        .innerText
+      Selector(PortalElements.intershipGrade.intershipInitials).nth(0).innerText
     )
     .contains("EST1")
     .expect(
-      Selector("#ctl00_Corpo_UCNotaEstagio1_notaEstagioGridView td").nth(1)
-        .innerText
+      Selector(PortalElements.intershipGrade.intershipName).nth(1).innerText
     )
     .contains("Estágio Supervisionado");
 });
 
 test(`7- Quadro de Pré/Co Requisitos: Verificar a exibição das informações`, async (t) => {
   await t
-    .click("#ctl00_Corpo_HyperLink28")
+    .click(PortalElements.requirementsTable.access)
 
-    .expect(Selector("tr.SSA_PiscinaLinha td").innerText)
+    .expect(Selector(PortalElements.requirementsTable.totalCredits).innerText)
     .contains("Total de Créditos Aprovados")
-    .expect(Selector("tr.SSA_PiscinaLinha td").innerText)
+    .expect(Selector(PortalElements.requirementsTable.totalCredits).innerText)
     .contains("Total de Créditos Matriculados");
 });
 
 test(`8- Tesouraria: Verificar dados`, async (t) => {
-  const tableDeb = Selector("#ctl00_Corpo_UCDebitos1_GridBenner th");
-  const tableBankDetails = Selector(
-    "#MSO_ContentTable table table table table tr td"
-  );
+  const tableDeb = Selector(PortalElements.treasury.tableDebits);
+  const tableBankDetails = Selector(PortalElements.treasury.tableBankDetails);
 
   await t
-    .click("#ctl00_Corpo_HyperLink17")
-    .expect(Selector("#ctl00_Corpo_UCDebitos1_Label4").innerText)
+    .click(PortalElements.treasury.access)
+    .expect(Selector(PortalElements.treasury.bankData).innerText)
     .eql("Dados Bancários para Pagamento")
 
-    .expect(Selector("#ctl00_Corpo_UCDebitos1_lblDebitos").innerText)
+    .expect(Selector(PortalElements.treasury.debits).innerText)
     .eql("Débitos")
 
-    .expect(Selector("#ctl00_Corpo_UCDebitos1_lblCreditos").innerText)
+    .expect(Selector(PortalElements.treasury.credits).innerText)
     .eql("Créditos e Devoluções")
 
     .expect(tableDeb.nth(0).innerText)
@@ -206,13 +195,12 @@ test(`8- Tesouraria: Verificar dados`, async (t) => {
 });
 
 test(`9- Pedidos de prova presencial`, async (t) => {
-  await t.click("#ctl00_Corpo_HyperLink24");
+  await t.click(PortalElements.testRequests.access);
 
-  const element = Selector("#ctl00_Corpo_UCPedidosProvasPresencial1_tvwProvat1")
-    .innerText;
+  const element = Selector(PortalElements.testRequests.course).innerText;
 
   await t
-    .click("#ctl00_MenuLateral_UCMenuAcademico10_HyperLink5")
+    .click(PortalElements.grades)
     .expect(element.visible)
     .ok();
 });
