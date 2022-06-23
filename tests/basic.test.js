@@ -1,7 +1,7 @@
 import { Selector } from "testcafe";
-import { PortalElements } from "../elements/portal.elements";
+import { PortalElements } from "./elements/portal.elements";
 import { regularUser } from "./roles/roles";
-import { FormRatingElements } from "../elements/formRating.elements";
+import { FormRatingElements } from "./elements/formRating.elements";
 
 fixture`Testes usando testcafe`.beforeEach(async (t) => {
   await t.useRole(regularUser);

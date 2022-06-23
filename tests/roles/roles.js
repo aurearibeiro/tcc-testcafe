@@ -1,7 +1,7 @@
 import { Role } from "testcafe";
 import { Selector } from "testcafe";
-import { LoginElements } from "../../elements/login.elements";
-import { FormCovidElements } from "../../elements/formCovid.elements";
+import { LoginElements } from "../elements/login.elements";
+import { FormCovidElements } from "../elements/formCovid.elements";
 import config from "/tcc/login.json";
 
 const authType = Selector(LoginElements.authType);
