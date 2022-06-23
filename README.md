@@ -41,3 +41,7 @@ Para rodar os testes e atualizar a documentação, abra o terminal do VsCode e d
 npx testcafe chrome tests/basic.test.js --reporter html:report.html
 ```
 
+Para gerar os vídeos, abra o terminal do VsCode e digite o comando:
+```
+npx testcafe chrome tests/basic.test.js --video artifacts/videos
+```
