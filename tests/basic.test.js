@@ -1,55 +1,18 @@
 import { Selector } from "testcafe";
-import { LoginElements } from "../elements/login.elements";
-import { FormCovidElements } from "../elements/formCovid.elements";
 import { PortalElements } from "../elements/portal.elements";
+import { regularUser } from "./roles/roles";
 import { FormRatingElements } from "../elements/formRating.elements";
 
-fixture`Testes usando testcafe`
-  .page`https://siteseguro.inatel.br/PortalAcademico/WebLogin.aspx?ReturnUrl=%2fPortalacademico`.beforeEach(
-  async (t) => {
-    await t
-      .click(authType)
-      .click(authTypeOption.withText("Por Curso e Matricula"))
-      .expect(authType.value)
-      .eql("2")
+fixture`Testes usando testcafe`.beforeEach(async (t) => {
+  await t.useRole(regularUser);
+  const info = Selector(FormRatingElements.formRating);
 
-      .click(course)
-      .click(courseOption.withText("Engenharia de Controle e Automação"))
-      .expect(course.value)
-      .eql("24")
-
-      .typeText(LoginElements.inputRegistration, "99999")
-      .typeText(LoginElements.inputPassword, "119922")
-      .click(LoginElements.buttonLogin);
-
-    const form = Selector(FormCovidElements.form);
-
-    if (await form.exists) {
-      await t
-        .click(FormCovidElements.answer1)
-        .click(FormCovidElements.answer2)
-        .click(FormCovidElements.answer3)
-        .click(FormCovidElements.answer4)
-        .click(FormCovidElements.answer5)
-        .click(FormCovidElements.answer6)
-        .click(FormCovidElements.buttonConfirm)
-        .click(FormCovidElements.buttonContinue);
-    }
-
-    const info = Selector(FormRatingElements.formRating);
-
-    if (await info.exists) {
-      await t.click(FormRatingElements.button);
-    }
+  if (await info.exists) {
+    await t.click(FormRatingElements.button);
   }
-);
+});
 
-const authType = Selector(LoginElements.authType);
-const course = Selector(LoginElements.course);
 const req = Selector(PortalElements.requirements.requirementOption);
-
-const authTypeOption = authType.find("option");
-const courseOption = course.find("option");
 const reqOption = req.find("option");
 
 test(`1- Histórico acadêmico: Verificar a exibição da tabela`, async (t) => {
