@@ -25,7 +25,8 @@ test(`1- Histórico acadêmico: Verificar a exibição da tabela`, async (t) => 
     .expect(Selector("th").nth(2).innerText)
     .eql("Nota")
     .expect(Selector("th").nth(3).innerText)
-    .eql("Ano/Semestre");
+    .eql("Ano/Semestre")
+    .takeScreenshot();
 });
 
 test(`2- Atividades complementares: Verificar exibição da mensagem`, async (t) => {
@@ -35,7 +36,8 @@ test(`2- Atividades complementares: Verificar exibição da mensagem`, async (t)
     .expect(Selector(PortalElements.complementaryActivity.message).innerText)
     .eql(
       "Você não está matriculado em turmas que possuem atividades complementares !!!"
-    );
+    )
+    .takeScreenshot();
 });
 
 test(`3- Pedidos (notas): Verificar exibição da mensagem`, async (t) => {
@@ -43,7 +45,8 @@ test(`3- Pedidos (notas): Verificar exibição da mensagem`, async (t) => {
     .click(PortalElements.noteRequest.access)
 
     .expect(Selector(PortalElements.noteRequest.message).innerText)
-    .eql("Não existem pedidos de notas a serem solicitados !!!");
+    .eql("Não existem pedidos de notas a serem solicitados !!!")
+    .takeScreenshot();
 });
 
 test(`4- Consulta de pedidos (notas): Verificar exibição da mensagem`, async (t) => {
@@ -51,7 +54,8 @@ test(`4- Consulta de pedidos (notas): Verificar exibição da mensagem`, async (
     .click(PortalElements.orderInquiry.access)
 
     .expect(Selector(PortalElements.orderInquiry.message).innerText)
-    .eql("Não existem Pedidos referentes à Notas a serem consultados.");
+    .eql("Não existem Pedidos referentes à Notas a serem consultados.")
+    .takeScreenshot();
 });
 
 test(`5- Requerimentos: Verificar requerimentos existentes`, async (t) => {
@@ -65,7 +69,8 @@ test(`5- Requerimentos: Verificar requerimentos existentes`, async (t) => {
     .click(req)
     .click(reqOption.withText("Requerimento de Pedido de PVS"))
     .expect(req.value)
-    .eql("4");
+    .eql("4")
+    .takeScreenshot();
 });
 
 test(`6- Nota de estágio: Verificar exibição da tabela`, async (t) => {
@@ -88,7 +93,8 @@ test(`6- Nota de estágio: Verificar exibição da tabela`, async (t) => {
     .expect(
       Selector(PortalElements.intershipGrade.intershipName).nth(1).innerText
     )
-    .contains("Estágio Supervisionado");
+    .contains("Estágio Supervisionado")
+    .takeScreenshot();
 });
 
 test(`7- Quadro de Pré/Co Requisitos: Verificar a exibição das informações`, async (t) => {
@@ -98,7 +104,8 @@ test(`7- Quadro de Pré/Co Requisitos: Verificar a exibição das informações`
     .expect(Selector(PortalElements.requirementsTable.totalCredits).innerText)
     .contains("Total de Créditos Aprovados")
     .expect(Selector(PortalElements.requirementsTable.totalCredits).innerText)
-    .contains("Total de Créditos Matriculados");
+    .contains("Total de Créditos Matriculados")
+    .takeScreenshot();
 });
 
 test(`8- Tesouraria: Verificar dados`, async (t) => {
@@ -161,7 +168,8 @@ test(`8- Tesouraria: Verificar dados`, async (t) => {
     .expect(tableBankDetails.nth(14).innerText)
     .contains("Chave Pix (CNPJ):")
     .expect(tableBankDetails.nth(15).innerText)
-    .contains("24.492.886/0001-04");
+    .contains("24.492.886/0001-04")
+    .takeScreenshot();
 });
 
 test(`9- Pedidos de prova presencial`, async (t) => {
@@ -172,5 +180,6 @@ test(`9- Pedidos de prova presencial`, async (t) => {
   await t
     .click(PortalElements.grades)
     .expect(element.visible)
-    .ok();
+    .ok()
+    .takeScreenshot();
 });
