@@ -2,6 +2,7 @@ import { Role } from "testcafe";
 import { Selector } from "testcafe";
 import { LoginElements } from "../../elements/login.elements";
 import { FormCovidElements } from "../../elements/formCovid.elements";
+import config from "/tcc/login.json";
 
 const authType = Selector(LoginElements.authType);
 const course = Selector(LoginElements.course);
@@ -18,12 +19,12 @@ const regularUser = Role(
       .eql("2")
 
       .click(course)
-      .click(courseOption.withText("Engenharia de Controle e Automação"))
+      .click(courseOption.withText(config.curso))
       .expect(course.value)
       .eql("24")
 
-      .typeText(LoginElements.inputRegistration, "99999")
-      .typeText(LoginElements.inputPassword, "119922")
+      .typeText(LoginElements.inputRegistration, config.matricula)
+      .typeText(LoginElements.inputPassword, config.senha)
       .click(LoginElements.buttonLogin);
 
     const form = Selector(FormCovidElements.form);
