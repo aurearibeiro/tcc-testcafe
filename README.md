@@ -48,5 +48,5 @@ npx testcafe chrome tests/basic.test.js --video artifacts/videos
 
 * Para tirar os prints da tela, abra o terminal do VsCode e digite o comando:
 ```
-testcafe chrome tests/sample-fixture.js -s takeOnFails=true
+testcafe chrome tests/basic.test.js -s takeOnFails=true
 ```
