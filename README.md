@@ -31,17 +31,22 @@ npm install ou yarn install - Instala todas as dependências necessárias.
 ```
 
 ### Iniciando a aplicação
-Para rodar os testes, abra o terminal do VsCode e digite o comando:
+* Para rodar os testes, abra o terminal do VsCode e digite o comando:
 ```
 npm test ou yarn test
 ```
 
-Para rodar os testes e atualizar a documentação, abra o terminal do VsCode e digite o comando:
+* Para rodar os testes e atualizar a documentação, abra o terminal do VsCode e digite o comando:
 ```
 npx testcafe chrome tests/basic.test.js --reporter html:report.html
 ```
 
-Para gerar os vídeos, abra o terminal do VsCode e digite o comando:
+* Para gerar os vídeos, abra o terminal do VsCode e digite o comando:
 ```
 npx testcafe chrome tests/basic.test.js --video artifacts/videos
+```
+
+* Para tirar os prints da tela, abra o terminal do VsCode e digite o comando:
+```
+testcafe chrome tests/sample-fixture.js -s takeOnFails=true
 ```
